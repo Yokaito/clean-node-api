@@ -10,7 +10,7 @@ interface Body {
 
 export class SignUpController {
   handle (httpRequest: HttpRequest<Body>): HttpResponse {
-    const requiredFields = ['name', 'email']
+    const requiredFields = ['name', 'email', 'password']
     let fieldError = ''
 
     for (const field of requiredFields) {
