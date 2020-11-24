@@ -9,12 +9,16 @@ interface Body {
 }
 
 export class SignUpController {
-  handle (httpRequest: HttpRequest<Body>): HttpResponse | undefined {
-    if (!httpRequest.body?.name) {
-      return badRequest(new MissingParamError('name'))
+  handle (httpRequest: HttpRequest<Body>): HttpResponse {
+    const requiredFields = ['name', 'email']
+    let fieldError = ''
+
+    for (const field of requiredFields) {
+      if (!httpRequest.body?.[field]) {
+        fieldError = field
+      }
     }
-    if (!httpRequest.body?.email) {
-      return badRequest(new MissingParamError('email'))
-    }
+
+    return badRequest(new MissingParamError(fieldError))
   }
 }
