@@ -1,0 +1,7 @@
+{
+  "name": "architecture",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Guilherme Fontes <gui.fontes.amorim@gmail.com>",
+  "license": "MIT"
+}
