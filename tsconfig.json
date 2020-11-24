@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist", // onde a build vai ficar
+    "module": "commonjs", // import/export
+    "target": "es2019", // ecmascript 2019
+    "esModuleInterop": true, // conversao dos modules do commonjs require/import
+    "allowJs": true, // aceita arquivos .js fora os .ts
+  }
+}
