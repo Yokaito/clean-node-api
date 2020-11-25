@@ -1,10 +1,10 @@
 import { HttpResponse, HttpRequest } from '../protocols/http'
 import { Controller } from '../protocols/controller'
 
-import { MissingParamError } from '../errors/missing-param-error'
 import { badRequest, serverError } from '../helpers/http-helper'
+import { MissingParamError, InvalidParamError } from '../errors'
+
 import { EmailValidator } from '../protocols/email-validator'
-import { InvalidParamError } from '../errors/invalid-param-error'
 
 interface Body {
   name: string
