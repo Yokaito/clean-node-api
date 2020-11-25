@@ -1,9 +1,14 @@
 import { SignUpController } from './signup'
 import { MissingParamError } from '../errors/missing-param-error'
-// import { InvalidParamError } from '../errors/invalid-param-error'
+import { InvalidParamError } from '../errors/invalid-param-error'
 import { EmailValidator } from '../protocols/email-validator'
 
-const makeSut = (): SignUpController => {
+interface SutTypes {
+  sut: SignUpController
+  emailValidatorStub: EmailValidator
+}
+
+const makeSut = (): SutTypes => {
   class EmailValidatorStub implements EmailValidator {
     isValid (email: string): boolean {
       return true
@@ -11,12 +16,16 @@ const makeSut = (): SignUpController => {
   }
 
   const emailValidatorStub = new EmailValidatorStub()
-  return new SignUpController(emailValidatorStub)
+  const sut = new SignUpController(emailValidatorStub)
+
+  return {
+    sut, emailValidatorStub
+  }
 }
 
 describe('SignUp Controller', () => {
   test('should return 400 if no name is provided', () => {
-    const sut = makeSut()
+    const { sut } = makeSut()
     const httpRequest = {
       body: {
         name: '',
@@ -31,7 +40,7 @@ describe('SignUp Controller', () => {
   })
 
   test('should return 400 if no email is provided', () => {
-    const sut = makeSut()
+    const { sut } = makeSut()
     const httpRequest = {
       body: {
         name: 'any_name',
@@ -46,7 +55,7 @@ describe('SignUp Controller', () => {
   })
 
   test('should return 400 if no password is provided', () => {
-    const sut = makeSut()
+    const { sut } = makeSut()
     const httpRequest = {
       body: {
         name: 'any_name',
@@ -60,8 +69,11 @@ describe('SignUp Controller', () => {
     expect(httpResponse?.body).toEqual(new MissingParamError('password'))
   })
 
-  /* test('should return 400 if invalid email provided', () => {
-    const sut = makeSut()
+  test('should return 400 if invalid email provided', () => {
+    const { sut, emailValidatorStub } = makeSut()
+
+    jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+
     const httpRequest = {
       body: {
         name: 'any_name',
@@ -71,7 +83,7 @@ describe('SignUp Controller', () => {
     }
     const httpResponse = sut.handle(httpRequest)
 
-    expect(httpResponse?.statusCode).toBe(400)
-    expect(httpResponse?.body).toEqual(new InvalidParamError('email'))
-  }) */
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('email'))
+  })
 })
