@@ -1,10 +1,6 @@
-import { HttpResponse, HttpRequest } from '../protocols/http'
-import { Controller } from '../protocols/controller'
-
 import { badRequest, serverError } from '../helpers/http-helper'
 import { MissingParamError, InvalidParamError } from '../errors'
-
-import { EmailValidator } from '../protocols/email-validator'
+import { HttpResponse, HttpRequest, EmailValidator, Controller } from '../protocols'
 
 interface Body {
   name: string
