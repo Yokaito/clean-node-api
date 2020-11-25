@@ -1,7 +1,7 @@
-import { badRequest, serverError } from '../helpers/http-helper'
-import { MissingParamError, InvalidParamError } from '../errors'
-import { HttpResponse, HttpRequest, EmailValidator, Controller } from '../protocols'
-import { AddAccount } from '../../domain/usecases/add-account'
+import { badRequest, serverError } from '../../helpers/http-helper'
+import { MissingParamError, InvalidParamError } from '../../errors'
+
+import { HttpRequest, HttpResponse, EmailValidator, Controller, AddAccount } from './signup-protocols'
 
 interface Body {
   name: string
