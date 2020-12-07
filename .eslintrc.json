@@ -1,7 +1,7 @@
 {
   "extends": "standard-with-typescript",
   "parserOptions": {
-    "project": "./tsconfig.build.json"
+    "project": "./tsconfig.json"
   },
   "rules": {
     "@typescript-eslint/no-redeclare": "off", // Disallow variable redeclaration
