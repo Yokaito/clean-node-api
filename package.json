@@ -41,7 +41,7 @@
     "start": "node ./dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "dev": "sucrase-node src/main/server.ts",
-    "dev:n": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/server.ts",
+    "dev:debug": "ts-node-dev --inspect=4321 -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/server.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
