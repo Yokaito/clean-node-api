@@ -1,5 +1,5 @@
 import { badRequest, serverError, ok } from '../../helpers/http/http-helper'
-import { HttpRequest, HttpResponse, Controller, AddAccount } from './signup-controller-protocols'
+import { HttpRequest, HttpResponse, Controller, AddAccount, Authentication } from './signup-controller-protocols'
 import { Validation } from '../../protocols/validation'
 
 interface Body {
@@ -12,7 +12,8 @@ interface Body {
 export class SignUpController implements Controller {
   constructor (
     private readonly addAccount: AddAccount,
-    private readonly validation: Validation
+    private readonly validation: Validation,
+    private readonly authentication: Authentication
   ) {
     this.addAccount = addAccount
     this.validation = validation
@@ -33,7 +34,9 @@ export class SignUpController implements Controller {
         email: email,
         password: password
       })
-
+      await this.authentication.auth({
+        email, password
+      })
       return ok(account)
     } catch (error) {
       return serverError(error)
