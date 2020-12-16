@@ -4,14 +4,14 @@
     "module": "commonjs", // import/export
     "target": "es2019", // ecmascript 2019
     "esModuleInterop": true, // conversao dos modules do commonjs require/import
-    "rootDir": "src", 
-    "baseUrl": "src",
+    "rootDir": "./src", 
+    "baseUrl": "./src",
     "strictNullChecks": false, // nao implica com codigos retornando null
     "removeComments": true, // remove os comentarios do codigo
     "paths": {
       "@/*": ["*"] // pode acessar os imports com @/
     }
   },
-  "include": ["src"],
+  "include": ["./src"],
   
 }

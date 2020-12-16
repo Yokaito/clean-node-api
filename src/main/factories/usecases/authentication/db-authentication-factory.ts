@@ -1,4 +1,4 @@
-import env from '../../../config/env'
+import env from '../../../../environment'
 import { DbAuthentication } from '../../../../data/usecases/authentication/db-authentication'
 import { AccountMongoRepository } from '../../../../infra/db/mongodb/account/account-mongo-repository'
 import { BcryptAdapter } from '../../../../infra/cryptography/bcrypt-adapter/bcrypt-adapter'
