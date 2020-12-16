@@ -1,7 +1,7 @@
-import { badRequest, serverError, ok, forbidden } from '../../helpers/http/http-helper'
+import { badRequest, serverError, ok, forbidden } from '../../../helpers/http/http-helper'
 import { HttpRequest, HttpResponse, Controller, AddAccount, Authentication } from './signup-controller-protocols'
-import { Validation } from '../../protocols/validation'
-import { EmailInUseError } from '../../../presentation/errors'
+import { Validation } from '../../../protocols/validation'
+import { EmailInUseError } from '../../../errors'
 
 interface Body {
   name: string

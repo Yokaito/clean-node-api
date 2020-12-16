@@ -7,9 +7,9 @@ import {
   Authentication,
   AuthenticationModel
 } from './signup-controller-protocols'
-import { EmailInUseError, MissingParamError,ServerError } from '../../errors'
-import { HttpRequest } from '../../protocols'
-import { ok, serverError , badRequest, forbidden } from '../../helpers/http/http-helper'
+import { EmailInUseError, MissingParamError,ServerError } from '../../../errors'
+import { HttpRequest } from '../../../protocols'
+import { ok, serverError , badRequest, forbidden } from '../../../helpers/http/http-helper'
 
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {
