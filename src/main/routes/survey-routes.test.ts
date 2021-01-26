@@ -2,8 +2,11 @@ import request from 'supertest'
 import app from '../config/app'
 import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 import { Collection } from 'mongodb'
+// import { sign } from 'jsonwebtoken'
+// import env from '../../environment'
 
 let surveyCollection: Collection
+let accountCollection: Collection
 
 describe('Survey Routes', () => {
   beforeAll(async () => {
@@ -17,6 +20,8 @@ describe('Survey Routes', () => {
   beforeEach(async () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
+    accountCollection = await MongoHelper.getCollection('account')
+    await accountCollection.deleteMany({})
   })
 
   describe('POST /surveys', () => {
@@ -34,5 +39,35 @@ describe('Survey Routes', () => {
         })
         .expect(403)
     })
+
+    /* test('should return 204 on add survey with valid accessToken', async () => {
+      const res = await accountCollection.insertOne({
+        name: 'Rodrigo',
+        email: 'rodrigo.manguinho@mail.com',
+        password: '123',
+        role: 'admin'
+      })
+      const id = res.ops[0]._id
+      const accessToken = sign({ id }, env.JWT_SECRET)
+      await accountCollection.updateOne({ _id: id }, {
+        $set: {
+          accessToken
+        }
+      })
+
+      await request(app)
+        .post('/api/surveys')
+        .set('x-access-token', accessToken)
+        .send({
+          question: 'Question',
+          answers: [{
+            answer: 'Answer 1',
+            image: 'http://image-name.com'
+          },{
+            answer: 'Answer 2'
+          }]
+        })
+        .expect(204)
+    }) */
   })
 })
