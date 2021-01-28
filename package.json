@@ -64,6 +64,6 @@
     }
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "src"
   }
 }

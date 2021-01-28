@@ -2,8 +2,8 @@ import request from 'supertest'
 import app from '../config/app'
 import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 import { Collection } from 'mongodb'
-// import { sign } from 'jsonwebtoken'
-// import env from '../../environment'
+import { sign } from 'jsonwebtoken'
+import env from '../../environment'
 
 let surveyCollection: Collection
 let accountCollection: Collection
@@ -20,7 +20,7 @@ describe('Survey Routes', () => {
   beforeEach(async () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
     await surveyCollection.deleteMany({})
-    accountCollection = await MongoHelper.getCollection('account')
+    accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
 
@@ -40,15 +40,18 @@ describe('Survey Routes', () => {
         .expect(403)
     })
 
-    /* test('should return 204 on add survey with valid accessToken', async () => {
+    test('should return 204 on add survey with valid accessToken', async () => {
       const res = await accountCollection.insertOne({
-        name: 'Rodrigo',
-        email: 'rodrigo.manguinho@mail.com',
-        password: '123',
+        name: 'Guilherme',
+        email: 'gui@mail.com',
+        password: 'Adjiguix5',
         role: 'admin'
       })
+
       const id = res.ops[0]._id
-      const accessToken = sign({ id }, env.JWT_SECRET)
+      const accessToken = sign({ id }, env.JWT_SECRET, {
+        expiresIn: env.EXPIRES_IN
+      })
       await accountCollection.updateOne({ _id: id }, {
         $set: {
           accessToken
@@ -68,6 +71,6 @@ describe('Survey Routes', () => {
           }]
         })
         .expect(204)
-    }) */
+    })
   })
 })
