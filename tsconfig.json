@@ -4,6 +4,7 @@
     "module": "commonjs", // import/export
     "target": "es2019", // ecmascript 2019
     "esModuleInterop": true, // conversao dos modules do commonjs require/import
+    "sourceMap": true,
     "rootDir": "./src", 
     "baseUrl": "./src",
     "strictNullChecks": false, // nao implica com codigos retornando null
