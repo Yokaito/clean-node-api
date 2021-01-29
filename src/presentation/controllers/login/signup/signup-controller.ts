@@ -3,7 +3,7 @@ import { HttpRequest, HttpResponse, Controller, AddAccount, Authentication } fro
 import { Validation } from '../../../protocols/validation'
 import { EmailInUseError } from '../../../errors'
 
-interface Body {
+type Body = {
   name: string
   email: string
   password: string

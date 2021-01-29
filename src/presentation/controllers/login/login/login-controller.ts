@@ -1,7 +1,7 @@
 import { Authentication, Controller, HttpRequest, HttpResponse, Validation } from './login-controller-protocols'
 import { badRequest, ok, serverError, unauthorized } from '../../../helpers/http/http-helper'
 
-interface Body {
+type Body = {
   email: string
   password: string
 }
