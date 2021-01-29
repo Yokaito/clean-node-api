@@ -41,6 +41,7 @@
   },
   "scripts": {
     "start": "PRODUCTION='true' node ./dist/main/server.js",
+    "start:debug": "PRODUCTION='true' nodemon -L --watch ./dist --inspect=localhost:9222 --nolazy ./dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "dev": "sucrase-node src/main/server.ts",
     "dev:debug": "ts-node-dev --inspect=4321 -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/server.ts",
